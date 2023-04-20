@@ -121,3 +121,21 @@ aws dynamodb query \
     --key-condition-expression "SongTitle = :v_song and SongYear = :v_year" \
     --expression-attribute-values  '{":v_song":{"S":"Wasting Love"},":v_year":{"S":"1992"} }'
 ```
+
+
+----------------------
+
+aws dynamodb create-table \
+    --table-name Pessoa \
+    --attribute-definitions \
+        AttributeName=Nome,AttributeType=S \
+        AttributeName=Idade,AttributeType=N \
+    --key-schema \
+        AttributeName=Nome,KeyType=HASH \
+        AttributeName=Idade,KeyType=RANGE \
+    --provisioned-throughput \
+        ReadCapacityUnits=10,WriteCapacityUnits=5
+```
+
+
+aws dynamodb put-item --table-name Pessoa --item file://pessoa.json 
